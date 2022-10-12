@@ -17,7 +17,7 @@
 
     <nav class="navbar navbar-expand-lg bg-white py-3">
         <div class="container">
-            <a href="#" class="navbar-brand text-uppercase">blog.dev</a>
+            <a href="." class="navbar-brand text-uppercase">blog.dev</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,8 +30,17 @@
                     <li class="nav-item"><a href="#" class="nav-link">About Us</a></li>
                 </ul>
                 <ul class="navbar-nav gap-3">
-                    <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>
-                    <li class="nav-item"><a href="register.php" class="btn btn-primary rounded-pill fw-medium px-4 py-2">Register</a></li>
+                    <?php
+                    if (isset($_SESSION['user_id'])) {
+                        $query = mysqli_fetch_array(mysqli_query($connect, "SELECT * FROM users WHERE id = '$_SESSION[user_id]'"));
+                        $name = $query['name'];
+                        echo "<li class='nav-item'><p class='m-0 nav-link active'>Hi, $name</p></li>";
+                        echo "<li class='nav-item'><a href='blogger/' class='m-0 nav-link'>Dashboard</a></li>";
+                    } else {
+                    ?>
+                        <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>
+                        <li class="nav-item"><a href="register.php" class="btn btn-primary rounded-pill fw-medium px-4 py-2">Register</a></li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>

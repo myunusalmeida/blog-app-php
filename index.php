@@ -22,7 +22,7 @@ $last_post = mysqli_fetch_array(mysqli_query($connect, "SELECT * FROM posts INNE
 
 <section class="py-5">
     <div class="container">
-        <a href="#" class="row align-items-center hero-post">
+        <a href="detail.php?title=<?= $last_post['slug'] ?>" class="row align-items-center hero-post">
             <div class="col-md-6">
                 <img src="assets/img/post/<?= $last_post['image'] ?>" alt="" class="rounded-3 mb-3 hero-post-img">
             </div>
